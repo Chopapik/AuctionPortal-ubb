@@ -6,24 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - auction_portal_ubb</title>
     <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="icon" href="~/images/ico.svg" />
+    <link rel="stylesheet" href="~/css/output.css" />
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/auction_portal_ubb.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/auction_portal_ubb.styles.css" asp-append-version="true" /> *@
 </head>
 
 <body>
-    <header>
-        header
+    <header
+        class="bg-black flex flex-col gap-4 sm:gap-0 sm:flex-row sm:justify-between items-center sm:px-8 py-6 sm:py-4">
+        <img src="~/images/logo.svg" alt="logo" class="w-[150px] h-[40px] ">
+        <div class="flex gap-8">
+            <button class="text-white font-poppins font-medium flex gap-1 ">
+                <img src="~/images/icons/bagIcon.svg" height="24px" width="24px" alt="bag">
+                <span>pusty koszyk</span>
+            </button>
+            <a href="~/user/Login" class="text-white font-poppins font-medium flex gap-1">
+                <img src="~/images/icons/userIcon.svg" height="24px" width="24px" alt="user">
+                <span>zaloguj się</span>
+            </a>
+        </div>
+        </div>
     </header>
-    <div>
-        <main role="main">
+    <div class="w-full flex justify-center">
+        <main role="main" class="w-full max-w-[1440px]">
             @RenderBody()
         </main>
     </div>
-
-    <footer>
-        footer
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
