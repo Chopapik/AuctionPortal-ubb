@@ -1,1 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
+
+@theme {
+    --font-poppins: "Poppins", sans-serif;
+    --font-inter: "Inter", sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+.form-group {
+    width: 400px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-family: poppins;
+    font-size: 14px;
+    color: white;
+    margin-left: 8px;
+}
+
+.form-input {
+    background-color: #2A2A2A;
+    width: 100%;
+    height: 42px;
+    width: 100%;
+    border-radius: 24px;
+    padding: 0 12px;
+    outline: none;
+    border: none;
+    color: white;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    background: linear-gradient(90deg, #2A2A2A, #262626);
+
+}
+
+.form-input input::placeholder {
+    color: #505050;
+}
+
+
+
+.custom-form-field label {
+    font-family: 'Poppins', sans-serif;
+    padding-left: 8px;
+    color: #D5D5D5;
+    font-size: 14px;
+    font-weight: 600;
+}

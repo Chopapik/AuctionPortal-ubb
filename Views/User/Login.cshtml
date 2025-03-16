@@ -1,0 +1,65 @@
+@{
+    Layout = "~/Views/Shared/_NullLayout.cshtml";
+    ViewData["Title"] = "Logowanie";
+}
+
+<div class="py-[128px] flex flex-col items-center gap-16 ">
+
+
+    <form action="#" class="flex flex-col gap-16 items-center bg-black p-12 rounded-3xl">
+        <span class="text-4xl text-white font-poppins font-bold bg">Logowanie</span>
+
+        <div class="flex flex-col items-center font-iter">
+
+
+            <div class="form-group relative">
+
+                <label>email</label>
+                <div class="form-input ">
+                    <div class="flex w-full">
+                        <input type="email" placeholder="example@domain.com" class="flex-grow px-4 outline-none" />
+                    </div>
+                    <span class=" absolute right-1 -bottom-2 text-red-600 font-inter text-xs"></span>
+                </div>
+
+
+            </div>
+            <div class="form-group relative">
+                <label>hasło</label>
+                <div class="form-input ">
+                    <div class="flex w-full">
+                        <input type="password" placeholder="●●●●●●" class="flex-grow px-4 outline-none" />
+                        <button class="w-8 h-8 flex-shrink-0">
+                            <img src="~/images/icons/eyeIcon.svg" alt="pokaż">
+                        </button>
+                    </div>
+                    <span class=" absolute right-1 -bottom-2 text-red-600 font-inter text-xs"></span>
+                </div>
+
+
+            </div>
+            <div class="mt-4 flex items-center h-2 gap-1">
+                <input type="checkbox" class="mt-0.5">
+                <span class="text-white font-inter text-sm">zapamiętaj mnie</span>
+            </div>
+        </div>
+
+        <button
+            class="w-[126px] h-[50px] font-inter font-semibold text-white rounded-xl text-sm bg-gradient-to-br 
+           to-[#5038ED] from-[#9181F4] hover:to-[#2E1BB7] hover:from-[#6A5ACD] hover:scale-105 transition-all ease-in-out duration-300">
+            zaloguj się
+        </button>
+
+    </form>
+    <div class="font-poppins flex flex-col items-center gap-4">
+        <span>Nie masz konta?</span>
+        <div class="flex gap-4 font-extrabold items-center">
+            <hr class="w-[173px]">
+
+            <a href="/user/register">ZAŁÓŻ KONTO</a>
+            <hr class="w-[173px]">
+
+        </div>
+    </div>
+
+</div>
