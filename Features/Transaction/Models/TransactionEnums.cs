@@ -1,19 +1,16 @@
-
 namespace auction_portal_ubb.Models
 {
     public enum PaymentMethod
     {
-        CreditCard,
-        PayPal,
-        Blik
+        Blik,
+        Przelew,
+        Karta
     }
 
     public enum ShippingMethod
     {
-        DPD,
-        UPS,
-        FedEx,
-        DHL,
-        USPS
+        Kurier,
+        Paczkomat,
+        Odbior_Osobisty
     }
 }
