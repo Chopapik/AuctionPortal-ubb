@@ -12,7 +12,7 @@ using auction_portal_ubb.Models;
 namespace auction_portal_ubb.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250315152521_dbMigrations")]
+    [Migration("20250320121248_dbMigrations")]
     partial class dbMigrations
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace auction_portal_ubb.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("auction_portal_ubb.Models.Address", b =>
+            modelBuilder.Entity("auction_portal_ubb.Models.AddressModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,7 +68,7 @@ namespace auction_portal_ubb.Migrations
                     b.ToTable("Address", (string)null);
                 });
 
-            modelBuilder.Entity("auction_portal_ubb.Models.Auction", b =>
+            modelBuilder.Entity("auction_portal_ubb.Models.AuctionModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -106,7 +106,7 @@ namespace auction_portal_ubb.Migrations
                     b.ToTable("Auction", (string)null);
                 });
 
-            modelBuilder.Entity("auction_portal_ubb.Models.Transaction", b =>
+            modelBuilder.Entity("auction_portal_ubb.Models.TransactionModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -114,17 +114,15 @@ namespace auction_portal_ubb.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BuyerId")
+                    b.Property<int?>("AuctionId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BuyerId")
                         .HasColumnType("int");
 
                     b.Property<int>("PaymentMethod")
                         .HasMaxLength(50)
                         .HasColumnType("int");
-
-                    b.Property<string>("ShippingAddress")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
 
                     b.Property<int>("ShippingMethod")
                         .HasMaxLength(50)
@@ -138,12 +136,14 @@ namespace auction_portal_ubb.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AuctionId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Transaction", (string)null);
                 });
 
-            modelBuilder.Entity("auction_portal_ubb.Models.User", b =>
+            modelBuilder.Entity("auction_portal_ubb.Models.UserModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -155,7 +155,6 @@ namespace auction_portal_ubb.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -189,20 +188,20 @@ namespace auction_portal_ubb.Migrations
                     b.ToTable("User", (string)null);
                 });
 
-            modelBuilder.Entity("auction_portal_ubb.Models.Address", b =>
+            modelBuilder.Entity("auction_portal_ubb.Models.AddressModel", b =>
                 {
-                    b.HasOne("auction_portal_ubb.Models.User", "User")
+                    b.HasOne("auction_portal_ubb.Models.UserModel", "User")
                         .WithOne("Address")
-                        .HasForeignKey("auction_portal_ubb.Models.Address", "UserId")
+                        .HasForeignKey("auction_portal_ubb.Models.AddressModel", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("auction_portal_ubb.Models.Auction", b =>
+            modelBuilder.Entity("auction_portal_ubb.Models.AuctionModel", b =>
                 {
-                    b.HasOne("auction_portal_ubb.Models.User", "Seller")
+                    b.HasOne("auction_portal_ubb.Models.UserModel", "Seller")
                         .WithMany("Auctions")
                         .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -211,21 +210,26 @@ namespace auction_portal_ubb.Migrations
                     b.Navigation("Seller");
                 });
 
-            modelBuilder.Entity("auction_portal_ubb.Models.Transaction", b =>
+            modelBuilder.Entity("auction_portal_ubb.Models.TransactionModel", b =>
                 {
-                    b.HasOne("auction_portal_ubb.Models.User", "User")
+                    b.HasOne("auction_portal_ubb.Models.AuctionModel", "Auction")
+                        .WithMany()
+                        .HasForeignKey("AuctionId");
+
+                    b.HasOne("auction_portal_ubb.Models.UserModel", "User")
                         .WithMany("Transactions")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Auction");
+
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("auction_portal_ubb.Models.User", b =>
+            modelBuilder.Entity("auction_portal_ubb.Models.UserModel", b =>
                 {
-                    b.Navigation("Address")
-                        .IsRequired();
+                    b.Navigation("Address");
 
                     b.Navigation("Auctions");
 
