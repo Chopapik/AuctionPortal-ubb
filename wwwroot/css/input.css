@@ -58,3 +58,46 @@ button {
     font-size: 14px;
     font-weight: 600;
 }
+
+
+
+.button-normal {
+    min-width: 120px;
+    height: 41pxt;
+    font-family: 'Inter', sans-serif;
+    color: white;
+}
+
+.button-normal {
+    padding: 8px 16px;
+    min-width: 120px;
+    height: 41pxt;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    font-weight: 600;
+    background-color: #9181F4;
+    width: fit-content;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.button-normal:hover {
+    background-color: #6250D0;
+}
+
+.button-danger {
+    padding: 8px 16px;
+    min-width: 120px;
+    height: 41pxt;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    font-weight: 600;
+    background-color: #FF5454;
+    width: fit-content;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.button-danger:hover {
+    background-color: #FF1818;
+}
