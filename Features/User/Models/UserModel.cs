@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace auction_portal_ubb.Models
 {
-    public class User
+    public class UserModel
     {
         public int Id { get; set; }
 
@@ -19,11 +19,9 @@ namespace auction_portal_ubb.Models
         public required string Surname { get; set; }
 
         [MaxLength(50)]
-        [Required]
         public required string Nick { get; set; }
 
         [MaxLength(100)]
-        [Required]
         public required string Email { get; set; }
 
         [MaxLength(256)]
@@ -32,16 +30,14 @@ namespace auction_portal_ubb.Models
 
         [MaxLength(15)]
         [Required]
-        public required string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         [Required]
         public DateTime CreatedAt { get; set; }
 
-        public required Address Address { get; set; }
-        public required List<Transaction> Transactions { get; set; }
-        public required List<Auction> Auctions { get; set; }
-
-
+        public AddressModel? Address { get; set; }
+        public List<TransactionModel>? Transactions { get; set; }
+        public List<AuctionModel>? Auctions { get; set; }
 
     }
 }

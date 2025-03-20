@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace auction_portal_ubb.Models
 {
-    public class Auction
+    public class AuctionModel
     {
         public int Id { get; set; }
 
@@ -29,6 +29,6 @@ namespace auction_portal_ubb.Models
 
         [Required]
         public int SellerId { get; set; }
-        public required User Seller { get; set; }
+        public required UserModel Seller { get; set; }
     }
 }

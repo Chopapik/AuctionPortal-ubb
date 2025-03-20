@@ -10,10 +10,10 @@ namespace auction_portal_ubb.Models
     public class AppDbContext : DbContext
     {
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Auction> Auctions { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<Address> Addresses { get; set; }
+        public DbSet<UserModel> Users { get; set; }
+        public DbSet<AuctionModel> Auctions { get; set; }
+        public DbSet<TransactionModel> Transactions { get; set; }
+        public DbSet<AddressModel> Addresses { get; set; }
 
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -22,10 +22,10 @@ namespace auction_portal_ubb.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().ToTable("User");
-            modelBuilder.Entity<Auction>().ToTable("Auction");
-            modelBuilder.Entity<Transaction>().ToTable("Transaction");
-            modelBuilder.Entity<Address>().ToTable("Address");
+            modelBuilder.Entity<UserModel>().ToTable("User");
+            modelBuilder.Entity<AuctionModel>().ToTable("Auction");
+            modelBuilder.Entity<TransactionModel>().ToTable("Transaction");
+            modelBuilder.Entity<AddressModel>().ToTable("Address");
 
         }
 

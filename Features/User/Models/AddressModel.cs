@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace auction_portal_ubb.Models
 {
-    public class Address
+    public class AddressModel
     {
 
         public int Id { get; set; }
@@ -32,6 +32,6 @@ namespace auction_portal_ubb.Models
         public required string Country { get; set; }
 
         public required int UserId { get; set; }
-        public required User User { get; set; }
+        public required UserModel User { get; set; }
     }
 }
