@@ -1,7 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using auction_portal_ubb.Models;
+using auction_portal_ubb.Features.User.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<UserService>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -10,6 +14,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
+
+
 
 
 // Configure the HTTP request pipeline.
