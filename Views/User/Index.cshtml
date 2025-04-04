@@ -4,7 +4,7 @@
 
 @model UserModel
 
-<div class="w-full flex justify-center items-center p-4 flex-col gap-4 font-inter font-extrabold text-sm relative">
+<div class="w-full flex justify-center items-center p-4 flex-col gap-4 font-inter font-extrabold text-sm">
     <div class="bg-[#F0F0F0] h-8 w-[50%] rounded-xl flex items-center justify-center gap-2">
         <img src="~/images/icons/warningIcon.svg" alt="Uwaga" class="w-[20px] h-[20px]">
         <span>Uzupełnij swoje dane</span>
@@ -13,7 +13,7 @@
         <span class="font-poppins text-4xl font-bold">Twoje konto</span>
         <div class="w-full flex gap-4">
 
-            <div class="bg-[#FAF9F9] rounded-xl h-[315px] p-4 flex flex-col gap-4 font-semibold w-[50%]">
+            <div class="bg-[#FAF9F9] rounded-xl h-[315px] p-4 flex flex-col gap-4 font-semibold w-[50%] relative">
                 <span class=" font-poppins text-[#545454] font-semibold">dane kontaktowe</span>
                 <div class="text-black font-inter flex flex-col gap-0.5 text-3xl">
                     <span class="text-sm ml-0.5">imię i nazwisko</span>
@@ -65,17 +65,140 @@
             </div>
 
         </div>
-        <div class="flex flex-col gap-2">
-            <span class=" font-poppins text-[#545454] font-semibold">hasło i uwietrzylanie</span>
-            <button class="button-normal">zmień hasło</button>
-
+        <div class="flex w-full gap-8">
+            <div class="flex flex-col gap-2">
+                <span class=" font-poppins text-[#545454] font-semibold">hasło i uwietrzylanie</span>
+                <button class="button-normal">zmień hasło</button>
+            </div>
+            <div class="flex flex-col gap-2">
+                <span class=" font-poppins text-[#545454] font-semibold">edytuj dane</span>
+                <button class="button-normal" onClick="togglePanelVisibility('editUserPanel')">Edytuj</button>
+            </div>
         </div>
 
         <div class="flex flex-col gap-2">
             <span class=" font-poppins text-[#545454] font-semibold">usunięcie konta</span>
-            <button class="button-danger">usuń konto</button>
+            <form action="/User/Delete">
+                <input type="hidden" name="userId" value="@Model.Id" />
+                <button type="submit" class="button-danger">usuń konto</button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <!-- Edit user panel -->
+    <div id="editUserPanel" class="absolute top-0 left-0 w-full h-full bg-black/75 hidden"
+        onClick="togglePanelVisibility('editUserPanel')">
+        <div class=" w-full flex justify-center absolute top-0 left-0" onClick="event.stopPropagation()">
+            <form method="post" action="/User/Update"
+                class="flex flex-col gap-16 items-center bg-black p-12 rounded-3xl h-fit mt-[10vh]">
+                <span class="text-4xl text-white font-poppins font-bold">Edycja konta</span>
+
+                <div class="flex flex-col items-center gap-8">
+                    <input type="hidden" name="Id" value="@Model.Id" />
+
+                    <div class="flex gap-8">
+                        <div class="flex flex-col items-center font-inter">
+                            <!-- Name input -->
+                            <div class="form-group relative">
+                                <label for="Name">Imię</label>
+                                <div class="form-input">
+                                    <input type="text" id="Name" name="Name" maxlength="50"
+                                        class="flex-grow px-4 outline-none" placeholder="Wpisz swoje imię" />
+                                </div>
+                            </div>
+
+                            <!-- Surname input -->
+                            <div class="form-group relative">
+                                <label for="Surname">Nazwisko</label>
+                                <div class="form-input">
+                                    <input type="text" id="Surname" name="Surname" maxlength="50"
+                                        class="flex-grow px-4 outline-none" placeholder="Wpisz swoje nazwisko" />
+                                </div>
+                            </div>
+                            <!-- Email input -->
+                            <div class="form-group relative">
+                                <label for="Email">Email</label>
+                                <div class="form-input">
+                                    <input type="email" id="Email" name="Email" maxlength="100"
+                                        class="flex-grow px-4 outline-none" placeholder="example@domain.com" />
+                                </div>
+                            </div>
+
+                            <!-- Phone Number input -->
+                            <div class="form-group relative">
+                                <label for="PhoneNumber">Numer telefonu</label>
+                                <div class="form-input">
+                                    <input type="text" id="PhoneNumber" name="PhoneNumber" maxlength="15"
+                                        class="flex-grow px-4 outline-none" placeholder="Wpisz numer telefonu" />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="flex flex-col items-center font-inter">
+                            <!-- Street Address input -->
+                            <div class="form-group relative">
+                                <label for="StreetAddress">Adres ulicy</label>
+                                <div class="form-input">
+                                    <input type="text" id="StreetAddress" name="StreetAddress"
+                                        class="flex-grow px-4 outline-none" placeholder="Wpisz nazwę ulicy" />
+                                </div>
+                            </div>
+
+                            <!-- Building Number input -->
+                            <div class="form-group relative">
+                                <label for="BuildingNumber">Numer budynku</label>
+                                <div class="form-input">
+                                    <input type="text" id="BuildingNumber" name="BuildingNumber" maxlength="10"
+                                        class="flex-grow px-4 outline-none" placeholder="Numer budynku" />
+                                </div>
+                            </div>
+
+                            <!-- Apartment Number input (optional) -->
+                            <div class="form-group relative">
+                                <label for="ApartmentNumber">Numer mieszkania</label>
+                                <div class="form-input">
+                                    <input type="text" id="ApartmentNumber" name="ApartmentNumber" maxlength="10"
+                                        class="flex-grow px-4 outline-none"
+                                        placeholder="Numer mieszkania (opcjonalnie)" />
+                                </div>
+                            </div>
+
+                            <!-- Zip Code input -->
+                            <div class="form-group relative">
+                                <label for="ZipCode">Kod pocztowy</label>
+                                <div class="form-input">
+                                    <input type="text" id="ZipCode" name="ZipCode" maxlength="10"
+                                        class="flex-grow px-4 outline-none" placeholder="Kod pocztowy" />
+                                </div>
+                            </div>
+
+                            <!-- Country input -->
+                            <div class="form-group relative">
+                                <label for="Country">Kraj</label>
+                                <div class="form-input">
+                                    <input type="text" id="Country" name="Country" maxlength="50"
+                                        class="flex-grow px-4 outline-none" placeholder="Kraj" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        class="w-[126px] h-[50px] font-inter font-semibold text-white rounded-xl text-sm bg-gradient-to-br to-[#5038ED] from-[#9181F4] hover:to-[#2E1BB7] hover:from-[#6A5ACD] hover:scale-105 transition-all ease-in-out duration-300">
+                        zaktualizuj dane
+                    </button>
+            </form>
 
         </div>
 
     </div>
+
+</div>
+
+
+
 </div>
