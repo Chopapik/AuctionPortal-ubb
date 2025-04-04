@@ -8,33 +8,56 @@ using Microsoft.Extensions.Logging;
 using auction_portal_ubb.Models;
 using auction_portal_ubb.Features.User.Models.DTOs;
 using auction_portal_ubb.Features.User.Services;
+using auction_portal_ubb.Features.User.Repositories;
 
 namespace auction_portal_ubb.Features.User.Controllers
 {
     public class UserController : Controller
     {
         private readonly ILogger<UserController> _logger;
+        private readonly IUserRepository _userRepository;
 
-        private readonly UserService _userService;
-
-        public UserController(ILogger<UserController> logger, UserService userService)
+        public UserController(ILogger<UserController> logger, IUserRepository userRepository)
         {
             _logger = logger;
-            _userService = userService;
+            _userRepository = userRepository;
         }
 
-
-        public IActionResult Index(int UserId)
-
+        public async Task<IActionResult> Index(int userId)
         {
-
-            return View();
+            var user = await _userRepository.GetUser(userId);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+            return View(user);
         }
-
 
         public IActionResult Login()
         {
             return View();
+        }
+
+        public IActionResult Update()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(UserUpdateDto userUpdateData)
+        {
+            if (ModelState.IsValid)
+            {
+                var updatedUser = await _userRepository.UpdateUser(userUpdateData);
+                return RedirectToAction("Index", new { userId = updatedUser.Id });
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> Delete(int userId)
+        {
+            await _userRepository.DeleteUser(userId);
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Register()
@@ -42,22 +65,21 @@ namespace auction_portal_ubb.Features.User.Controllers
             return View();
         }
 
-
         [HttpPost]
-        public IActionResult Register(UserRegisterDto userRegisterData)
+        public async Task<IActionResult> Register(UserRegisterDto userRegisterData)
         {
-
             if (ModelState.IsValid)
             {
-                var newUser = _userService.RegisterUser(userRegisterData);
-                return RedirectToAction("Index", new { UserId = newUser.Id });
+                var newUser = await _userRepository.RegisterUser(userRegisterData);
+                if (newUser == null)
+                {
+                    // Można dodać obsługę komunikatu o błędzie
+                    return View(userRegisterData);
+                }
+                return RedirectToAction("Index", new { userId = newUser.Id });
             }
-
             return View();
         }
-
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
