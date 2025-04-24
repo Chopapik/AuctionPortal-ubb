@@ -1,0 +1,115 @@
+@* @{
+    Layout = "~/Views/Shared/_NullLayout.cshtml";
+    ViewData["Title"] = "Aktualizacja danych użytkownika";
+}
+
+<div class="py-[128px] flex flex-col items-center gap-16">
+    <form action="#" class="flex flex-col gap-16 items-center bg-black p-12 rounded-3xl">
+        <span class="text-4xl text-white font-poppins font-bold">Aktualizacja danych użytkownika</span>
+
+        <div class="flex flex-col items-center font-iter">
+            <div class="form-group relative">
+                <label for="name">Imię</label>
+                <div class="form-input">
+                    <div class="flex w-full">
+                        <input type="text" id="name" name="Name" placeholder="Wpisz swoje imię"
+                            class="flex-grow px-4 outline-none" maxlength="50" required />
+                    </div>
+                    <span class="absolute right-1 -bottom-2 text-red-600 font-inter text-xs"></span>
+                </div>
+            </div>
+
+            <div class="form-group relative">
+                <label for="surname">Nazwisko</label>
+                <div class="form-input">
+                    <div class="flex w-full">
+                        <input type="text" id="surname" name="Surname" placeholder="Wpisz swoje nazwisko"
+                            class="flex-grow px-4 outline-none" maxlength="50" required />
+                    </div>
+                    <span class="absolute right-1 -bottom-2 text-red-600 font-inter text-xs"></span>
+                </div>
+            </div>
+
+            <div class="form-group relative">
+                <label for="email">Email</label>
+                <div class="form-input">
+                    <div class="flex w-full">
+                        <input type="email" id="email" name="Email" placeholder="example@domain.com"
+                            class="flex-grow px-4 outline-none" maxlength="100" required />
+                    </div>
+                    <span class="absolute right-1 -bottom-2 text-red-600 font-inter text-xs"></span>
+                </div>
+            </div>
+
+            <div class="form-group relative">
+                <label for="streetAddress">Adres</label>
+                <div class="form-input">
+                    <div class="flex w-full">
+                        <input type="text" id="streetAddress" name="StreetAddress" placeholder="Wpisz adres"
+                            class="flex-grow px-4 outline-none" required />
+                    </div>
+                    <span class="absolute right-1 -bottom-2 text-red-600 font-inter text-xs"></span>
+                </div>
+            </div>
+
+            <div class="form-group relative">
+                <label for="buildingNumber">Numer budynku</label>
+                <div class="form-input">
+                    <div class="flex w-full">
+                        <input type="text" id="buildingNumber" name="BuildingNumber" placeholder="Numer budynku"
+                            class="flex-grow px-4 outline-none" maxlength="10" required />
+                    </div>
+                    <span class="absolute right-1 -bottom-2 text-red-600 font-inter text-xs"></span>
+                </div>
+            </div>
+
+            <div class="form-group relative">
+                <label for="apartmentNumber">Numer mieszkania</label>
+                <div class="form-input">
+                    <div class="flex w-full">
+                        <input type="text" id="apartmentNumber" name="ApartmentNumber" placeholder="Numer mieszkania"
+                            class="flex-grow px-4 outline-none" maxlength="10" />
+                    </div>
+                    <span class="absolute right-1 -bottom-2 text-red-600 font-inter text-xs"></span>
+                </div>
+            </div>
+
+            <div class="form-group relative">
+                <label for="zipCode">Kod pocztowy</label>
+                <div class="form-input">
+                    <div class="flex w-full">
+                        <input type="text" id="zipCode" name="ZipCode" placeholder="Kod pocztowy"
+                            class="flex-grow px-4 outline-none" maxlength="10" required />
+                    </div>
+                    <span class="absolute right-1 -bottom-2 text-red-600 font-inter text-xs"></span>
+                </div>
+            </div>
+
+            <div class="form-group relative">
+                <label for="country">Kraj</label>
+                <div class="form-input">
+                    <div class="flex w-full">
+                        <input type="text" id="country" name="Country" placeholder="Wpisz kraj"
+                            class="flex-grow px-4 outline-none" maxlength="50" required />
+                    </div>
+                    <span class="absolute right-1 -bottom-2 text-red-600 font-inter text-xs"></span>
+                </div>
+            </div>
+        </div>
+
+        <button
+            class="w-[126px] h-[50px] font-inter font-semibold text-white rounded-xl text-sm bg-gradient-to-br 
+           to-[#5038ED] from-[#9181F4] hover:to-[#2E1BB7] hover:from-[#6A5ACD] hover:scale-105 transition-all ease-in-out duration-300">
+            Zaktualizuj dane
+        </button>
+    </form>
+
+    <div class="font-poppins flex flex-col items-center gap-4">
+        <span>Chcesz wrócić do strony głównej?</span>
+        <div class="flex gap-4 font-extrabold items-center">
+            <hr class="w-[173px]">
+            <a href="/">STRONA GŁÓWNA</a>
+            <hr class="w-[173px]">
+        </div>
+    </div>
+</div> *@
