@@ -4,10 +4,8 @@ using auction_portal_ubb.Models;
 
 namespace auction_portal_ubb.Features.User.Repositories
 {
-    public interface IUserRepository
+    public interface IAuthRepository
     {
-        Task<UserModel> GetUser(int userId);
-        Task<UserModel> UpdateUser(UserUpdateDto userUpdateData);
-        Task DeleteUser(int userId);
+        Task<UserModel?> RegisterUser(UserRegisterDto userRegisterData);
     }
 }
