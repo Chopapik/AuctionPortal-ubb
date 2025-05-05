@@ -3,15 +3,21 @@ using auction_portal_ubb.Models;
 using auction_portal_ubb.Features.User.Services;
 using auction_portal_ubb.Features.User.Repositories;
 
+// Ensure the namespace for UserRepository is correctly imported
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<AuthService>();
+
 
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+
 
 
 builder.Services.AddDbContext<AppDbContext>(options =>
