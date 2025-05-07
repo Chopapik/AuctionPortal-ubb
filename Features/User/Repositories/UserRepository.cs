@@ -14,7 +14,7 @@ namespace auction_portal_ubb.Features.User.Repositories
             _context = context;
         }
 
-        public async Task<UserModel> GetUser(int userId)
+        public async Task<UserModel> GetById(int userId)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace auction_portal_ubb.Features.User.Repositories
             }
         }
 
-        public async Task<UserModel> UpdateUser(UserUpdateDto userUpdateData)
+        public async Task<UserModel> UpdateAccount(UserUpdateDto userUpdateData)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace auction_portal_ubb.Features.User.Repositories
             }
         }
 
-        public async Task DeleteUser(int userId)
+        public async Task DeleteAccount(int userId)
         {
             try
             {

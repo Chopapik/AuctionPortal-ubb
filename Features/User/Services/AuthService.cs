@@ -1,51 +1,36 @@
 using System;
+using System.Threading.Tasks;
 using auction_portal_ubb.Features.User.Models.DTOs;
 using auction_portal_ubb.Models;
+using auction_portal_ubb.Features.User.Repositories;
 
 namespace auction_portal_ubb.Features.User.Services
 {
     public class AuthService
     {
-        private readonly AppDbContext _context;
+        private readonly IAuthRepository _authRepository;
 
-        public AuthService(AppDbContext context)
+        public AuthService(IAuthRepository authRepository)
         {
-            _context = context;
+            _authRepository = authRepository;
         }
 
-        public UserModel? RegisterUser(UserRegisterDto userRegisterData)
+        public async Task<UserModel?> RegisterUser(UserRegisterDto userRegisterData)
         {
-            if (userRegisterData.Password != userRegisterData.ConfirmPassword)
-            {
-                return null;
-            }
-
-            var newUser = new UserModel
-            {
-                Name = "",
-                Surname = "",
-                Nick = "",
-                Email = userRegisterData.Email,
-                PasswordHash = "hashPassword", // TODO: implement real hashing
-                PhoneNumber = "",
-                CreatedAt = DateTime.Now
-            };
-
             try
             {
-                _context.Users.Add(newUser);
-                _context.SaveChanges();
+                var newUser = await _authRepository.RegisterUser(userRegisterData);
                 return newUser;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error occurred while registering the user.", ex);
+                throw new Exception("Service error during registration", ex);
             }
         }
 
         public bool LoginUser(string username, string password)
         {
-            // TODO: Implement actual login logic with hashing and credential verification
+            // TODO: Implement actual login logic, comparing hashed password etc.
             return true;
         }
     }

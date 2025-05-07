@@ -6,8 +6,8 @@ namespace auction_portal_ubb.Features.User.Repositories
 {
     public interface IUserRepository
     {
-        Task<UserModel> GetUser(int userId);
-        Task<UserModel> UpdateUser(UserUpdateDto userUpdateData);
-        Task DeleteUser(int userId);
+        Task<UserModel> GetById(int userId);
+        Task<UserModel> UpdateAccount(UserUpdateDto userUpdateData);
+        Task DeleteAccount(int userId);
     }
 }

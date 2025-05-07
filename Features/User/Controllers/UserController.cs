@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using auction_portal_ubb.Features.User.Models.DTOs;
-using auction_portal_ubb.Features.User.Repositories;
+using auction_portal_ubb.Features.User.Services;
 
 namespace auction_portal_ubb.Features.User.Controllers
 {
     public class UserController : Controller
     {
 
-        private readonly IUserRepository _userRepository;
+        private readonly UserService _userService;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(UserService userService)
         {
-            _userRepository = userRepository;
+            _userService = userService;
         }
 
         public async Task<IActionResult> Index(int userId)
         {
-            var user = await _userRepository.GetUser(userId);
+            var user = await _userService.GetAccountData(userId);
             if (user == null)
             {
                 throw new Exception("User not found");
@@ -40,7 +40,7 @@ namespace auction_portal_ubb.Features.User.Controllers
         {
             if (ModelState.IsValid)
             {
-                var updatedUser = await _userRepository.UpdateUser(userUpdateData);
+                var updatedUser = await _userService.UpdateAccountData(userUpdateData);
                 return RedirectToAction("Index", new { userId = updatedUser.Id });
             }
             return View();
