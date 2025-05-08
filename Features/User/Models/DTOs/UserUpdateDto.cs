@@ -23,23 +23,6 @@ namespace auction_portal_ubb.Features.User.Models.DTOs
 
         public string? Email { get; set; }
 
-        public string? StreetAddress { get; set; }
-
-        [MaxLength(10)]
-
-        public string? BuildingNumber { get; set; }
-
-        [MaxLength(10)]
-        public string? ApartmentNumber { get; set; }
-
-        [MaxLength(10)]
-
-        public string? ZipCode { get; set; }
-
-        [MaxLength(50)]
-
-        public string? Country { get; set; }
-
         [MaxLength(15)]
         public string? PhoneNumber { get; set; }
 
