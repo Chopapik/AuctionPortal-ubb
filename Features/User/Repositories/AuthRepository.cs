@@ -34,8 +34,25 @@ namespace auction_portal_ubb.Features.User.Repositories
 
             try
             {
-                await _context.AddAsync(newUser);
+                await _context.Users.AddAsync(newUser);
                 await _context.SaveChangesAsync();
+
+                var emptyAddress = new AddressModel
+                {
+                    UserId = newUser.Id,
+                    User = newUser,
+                    Street = "",
+                    BuildingNumber = "",
+                    ApartmentNumber = null,
+                    ZipCode = "",
+                    City = "",
+                    Country = ""
+                };
+
+
+                await _context.Addresses.AddAsync(emptyAddress);
+                await _context.SaveChangesAsync();
+
                 return newUser;
             }
             catch (Exception ex)
@@ -43,6 +60,7 @@ namespace auction_portal_ubb.Features.User.Repositories
                 throw new Exception("Error occurred while registering the user.", ex);
             }
         }
+
 
         // Możesz dodać logikę logowania tutaj w przyszłości
     }
