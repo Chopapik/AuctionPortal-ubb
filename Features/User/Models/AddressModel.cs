@@ -14,7 +14,7 @@ namespace auction_portal_ubb.Models
 
         [MaxLength(100)]
         [Required]
-        public required string StreetAddress { get; set; }
+        public required string Street { get; set; }
 
         [MaxLength(10)]
         [Required]
@@ -26,6 +26,10 @@ namespace auction_portal_ubb.Models
         [MaxLength(10)]
         [Required]
         public required string ZipCode { get; set; }
+
+        [MaxLength(50)]
+        [Required]
+        public required string City { get; set; }
 
         [MaxLength(50)]
         [Required]
