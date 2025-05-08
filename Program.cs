@@ -16,7 +16,10 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+
 
 
 
