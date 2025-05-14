@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/965bd8d8-d984-4cd8-9498-1d60bc23ac72" alt="logo" width="200"/>
+  <img src="https://github.com/user-attachments/assets/965bd8d8-d984-4cd8-9498-1d60bc23ac72" alt="logo" width="400"/>
 </p>
 
 # ASP.NET MVC Web Application – University Project
